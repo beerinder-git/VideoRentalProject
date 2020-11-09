@@ -57,5 +57,68 @@ namespace VideoRentalProject
 
             Connection.Close();
         }
+
+        private void LoadMovies_Click(object sender, EventArgs e)
+        {
+            Connection.Open();
+
+            DataTable CustomersTable = new DataTable();
+
+            CustomersTable.Clear();
+
+            CustomersTable.Columns.Add("MovieID");
+            CustomersTable.Columns.Add("Rating");
+            CustomersTable.Columns.Add("Title");
+            CustomersTable.Columns.Add("Year");
+            CustomersTable.Columns.Add("Rental_Cost");
+            CustomersTable.Columns.Add("Copies");
+            CustomersTable.Columns.Add("Plot");
+            CustomersTable.Columns.Add("Genre");
+
+            string query = "SELECT * FROM Movies";
+
+            SqlCommand command = new SqlCommand(query, Connection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                CustomersTable.Rows.Add(
+                    reader["MovieID"],
+                    reader["Rating"],
+                    reader["Title"],
+                    reader["Year"],
+                    reader["Rental_Cost"],
+                    reader["Copies"],
+                    reader["Plot"],
+                    reader["Genre"]
+                    );
+            }
+
+            CustomerGrid.DataSource = CustomersTable;
+
+            Connection.Close();
+        }
+
+        private void AddCustBtn_Click(object sender, EventArgs e)
+        {
+            Connection.Open();
+
+            string query = "INSERT INTO Customer (FirstName, LastName, Phone, Address) " +
+                    "VALUES(@FirstName, @LastName, @Phone, @Address);";
+
+            using (SqlCommand command = new SqlCommand(query, Connection))
+            {
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = FNTBox.Text;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = LNTBox.Text;
+                command.Parameters.Add("@Phone", SqlDbType.NVarChar).Value = PhTBox.Text;
+                command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = AdTBox.Text;
+
+                command.ExecuteNonQuery();
+            }
+
+            Connection.Close();
+
+            LoadBtn_Click(null, null);
+        }
     }
 }
