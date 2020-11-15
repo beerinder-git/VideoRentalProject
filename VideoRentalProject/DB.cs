@@ -146,6 +146,77 @@ namespace VideoRentalProject
             Connection.Close();
         }
 
+        public void IssueMovie(string movieIDFK, string custIDFK)
+        {
+            Connection.Open();
+
+            string query = "INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented)" +
+                    "VALUES(@MovieIDFK, @CustIDFK, @DateRented)";
+
+            using (SqlCommand command = new SqlCommand(query, Connection))
+            {
+                command.Parameters.AddWithValue("@MovieIDFK", movieIDFK);
+                command.Parameters.AddWithValue("@CustIDFK", custIDFK);
+                command.Parameters.AddWithValue("@DateRented", DateTime.Now);
+
+                command.ExecuteNonQuery();
+            }
+
+            Connection.Close();
+        }
+
+        public void ReturnMovie(string rmID)
+        {
+            Connection.Open();
+
+            string query = "UPDATE RentedMovies set DateReturned=@DateReturned Where RMID = @RMID";
+
+            using (SqlCommand command = new SqlCommand(query, Connection))
+            {
+                command.Parameters.Add("@RMID", SqlDbType.NVarChar).Value = rmID;
+                command.Parameters.Add("@DateReturned", SqlDbType.DateTime).Value = DateTime.Now;
+
+                command.ExecuteNonQuery();
+            }
+
+            Connection.Close();
+        }
+
+        public DataTable LoadRentedMovies()
+        {
+            Connection.Open();
+
+            DataTable CustomersTable = new DataTable();
+
+            CustomersTable.Clear();
+
+            CustomersTable.Columns.Add("RMID");
+            CustomersTable.Columns.Add("MovieIDFK");
+            CustomersTable.Columns.Add("CustIDFK");
+            CustomersTable.Columns.Add("DateRented");
+            CustomersTable.Columns.Add("DateReturned");
+
+            string query = "SELECT * FROM RentedMovies";
+
+            SqlCommand command = new SqlCommand(query, Connection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                CustomersTable.Rows.Add(
+                    reader["RMID"],
+                    reader["MovieIDFK"],
+                    reader["CustIDFK"],
+                    reader["DateRented"],
+                    reader["DateReturned"]
+                    );
+            }
+
+            Connection.Close();
+
+            return CustomersTable;
+        }
+
         public ConnectionState DBStatus()
         {
             return Connection.State;

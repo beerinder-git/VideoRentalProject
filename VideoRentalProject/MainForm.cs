@@ -14,6 +14,8 @@ namespace VideoRentalProject
     public partial class MainForm : Form
     {
         DB Database = new DB();
+        string WhichButtonClicked = "";
+        string RMID = "";
 
         public MainForm()
         {
@@ -23,11 +25,13 @@ namespace VideoRentalProject
         private void LoadBtn_Click(object sender, EventArgs e)
         {
             MainGrid.DataSource = Database.LoadCustomers();
+            WhichButtonClicked = "Customer";
         }
 
         private void LoadMovies_Click(object sender, EventArgs e)
         {
             MainGrid.DataSource = Database.LoadMovies();
+            WhichButtonClicked = "Movies";
         }
 
         private void AddCustBtn_Click(object sender, EventArgs e)
@@ -42,11 +46,29 @@ namespace VideoRentalProject
             LoadBtn_Click(null, null);
         }
 
-        
+
         private void DltCustBtn_Click(object sender, EventArgs e)
         {
             Database.DeleteCustomer(CustIDTBox.Text);
             LoadBtn_Click(null, null);
+        }
+
+        private void IssueMovieBtn_Click(object sender, EventArgs e)
+        {
+            Database.IssueMovie(MovieIDTBox.Text, CustIDTBox.Text);
+            LoadRentedMovies_Click(null, null);
+        }
+
+        private void LoadRentedMovies_Click(object sender, EventArgs e)
+        {
+            MainGrid.DataSource = Database.LoadRentedMovies();
+            WhichButtonClicked = "Rented";
+        }
+
+        private void ReturnMovieBtn_Click(object sender, EventArgs e)
+        {
+            Database.ReturnMovie(RMID);
+            LoadRentedMovies_Click(null, null);
         }
 
         private void MainGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -54,11 +76,25 @@ namespace VideoRentalProject
             int index = e.RowIndex;
             DataGridViewRow row = MainGrid.Rows[index];
 
-            CustIDTBox.Text = row.Cells[0].Value.ToString();
-            FNTBox.Text = row.Cells[1].Value.ToString();
-            LNTBox.Text = row.Cells[2].Value.ToString();
-            AdTBox.Text = row.Cells[3].Value.ToString();
-            PhTBox.Text = row.Cells[4].Value.ToString();
+            if (WhichButtonClicked == "Customer")
+            {
+                CustIDTBox.Text = row.Cells[0].Value.ToString();
+                FNTBox.Text = row.Cells[1].Value.ToString();
+                LNTBox.Text = row.Cells[2].Value.ToString();
+                AdTBox.Text = row.Cells[3].Value.ToString();
+                PhTBox.Text = row.Cells[4].Value.ToString();
+            }
+            else if(WhichButtonClicked == "Movies")
+            {
+                MovieIDTBox.Text = row.Cells[0].Value.ToString();
+            }
+            else if (WhichButtonClicked == "Rented")
+            {
+                RMID = row.Cells[0].Value.ToString();
+                Console.WriteLine(RMID);
+            }
         }
+
+        
     }
 }

@@ -44,6 +44,11 @@
             this.CustIDLabel = new System.Windows.Forms.Label();
             this.CustIDTBox = new System.Windows.Forms.TextBox();
             this.DltCustBtn = new System.Windows.Forms.Button();
+            this.MovieIDLabel = new System.Windows.Forms.Label();
+            this.MovieIDTBox = new System.Windows.Forms.TextBox();
+            this.ReturnMovieBtn = new System.Windows.Forms.Button();
+            this.IssueMovieBtn = new System.Windows.Forms.Button();
+            this.LoadRentedMovies = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,11 +192,63 @@
             this.DltCustBtn.UseVisualStyleBackColor = true;
             this.DltCustBtn.Click += new System.EventHandler(this.DltCustBtn_Click);
             // 
+            // MovieIDLabel
+            // 
+            this.MovieIDLabel.AutoSize = true;
+            this.MovieIDLabel.Location = new System.Drawing.Point(272, 487);
+            this.MovieIDLabel.Name = "MovieIDLabel";
+            this.MovieIDLabel.Size = new System.Drawing.Size(50, 13);
+            this.MovieIDLabel.TabIndex = 17;
+            this.MovieIDLabel.Text = "Movie ID";
+            // 
+            // MovieIDTBox
+            // 
+            this.MovieIDTBox.Enabled = false;
+            this.MovieIDTBox.Location = new System.Drawing.Point(272, 503);
+            this.MovieIDTBox.Name = "MovieIDTBox";
+            this.MovieIDTBox.Size = new System.Drawing.Size(100, 20);
+            this.MovieIDTBox.TabIndex = 16;
+            // 
+            // ReturnMovieBtn
+            // 
+            this.ReturnMovieBtn.Location = new System.Drawing.Point(584, 12);
+            this.ReturnMovieBtn.Name = "ReturnMovieBtn";
+            this.ReturnMovieBtn.Size = new System.Drawing.Size(82, 54);
+            this.ReturnMovieBtn.TabIndex = 18;
+            this.ReturnMovieBtn.Text = "Return Movie";
+            this.ReturnMovieBtn.UseVisualStyleBackColor = true;
+            this.ReturnMovieBtn.Click += new System.EventHandler(this.ReturnMovieBtn_Click);
+            // 
+            // IssueMovieBtn
+            // 
+            this.IssueMovieBtn.Location = new System.Drawing.Point(496, 12);
+            this.IssueMovieBtn.Name = "IssueMovieBtn";
+            this.IssueMovieBtn.Size = new System.Drawing.Size(82, 54);
+            this.IssueMovieBtn.TabIndex = 19;
+            this.IssueMovieBtn.Text = "Issue Movie";
+            this.IssueMovieBtn.UseVisualStyleBackColor = true;
+            this.IssueMovieBtn.Click += new System.EventHandler(this.IssueMovieBtn_Click);
+            // 
+            // LoadRentedMovies
+            // 
+            this.LoadRentedMovies.Location = new System.Drawing.Point(188, 12);
+            this.LoadRentedMovies.Name = "LoadRentedMovies";
+            this.LoadRentedMovies.Size = new System.Drawing.Size(82, 54);
+            this.LoadRentedMovies.TabIndex = 20;
+            this.LoadRentedMovies.Text = "Load Rented Movies";
+            this.LoadRentedMovies.UseVisualStyleBackColor = true;
+            this.LoadRentedMovies.Click += new System.EventHandler(this.LoadRentedMovies_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 476);
+            this.ClientSize = new System.Drawing.Size(800, 535);
+            this.Controls.Add(this.LoadRentedMovies);
+            this.Controls.Add(this.IssueMovieBtn);
+            this.Controls.Add(this.ReturnMovieBtn);
+            this.Controls.Add(this.MovieIDLabel);
+            this.Controls.Add(this.MovieIDTBox);
             this.Controls.Add(this.DltCustBtn);
             this.Controls.Add(this.CustIDLabel);
             this.Controls.Add(this.CustIDTBox);
@@ -234,6 +291,11 @@
         private System.Windows.Forms.Label CustIDLabel;
         private System.Windows.Forms.TextBox CustIDTBox;
         private System.Windows.Forms.Button DltCustBtn;
+        private System.Windows.Forms.Label MovieIDLabel;
+        private System.Windows.Forms.TextBox MovieIDTBox;
+        private System.Windows.Forms.Button ReturnMovieBtn;
+        private System.Windows.Forms.Button IssueMovieBtn;
+        private System.Windows.Forms.Button LoadRentedMovies;
     }
 }
 
