@@ -217,6 +217,57 @@ namespace VideoRentalProject
             return CustomersTable;
         }
 
+        public string PopularCustomer()
+        {
+            Connection.Open();
+
+            string query = "SELECT CustIDFK, COUNT(*) AS Rep FROM RentedMovies GROUP BY CustIDFK ORDER BY Rep DESC";
+
+            SqlCommand command = new SqlCommand(query, Connection);
+
+            var result = command.ExecuteScalar().ToString();
+
+            Connection.Close();
+
+            Connection.Open();
+
+            Console.WriteLine(result);
+
+            query = "SELECT FirstName, LastName FROM Customer WHERE CustID = " + result;
+
+            command = new SqlCommand(query, Connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            string output = "";
+
+            while (reader.Read())
+            {
+                output = reader["FirstName"].ToString();
+                output += " ";
+                output += reader["LastName"].ToString();
+            }
+
+            Connection.Close();
+
+            return output;
+        }
+
+        public string PopularMovie()
+        {
+            Connection.Open();
+
+            string query = "SELECT MovieIDFK, COUNT(*) AS Rep FROM RentedMovies GROUP BY MovieIDFK ORDER BY Rep DESC";
+
+            SqlCommand command = new SqlCommand(query, Connection);
+
+            var result = command.ExecuteScalar().ToString();
+
+            Connection.Close();
+
+            return result;
+        }
+
         public ConnectionState DBStatus()
         {
             return Connection.State;

@@ -95,6 +95,14 @@ namespace VideoRentalProject
             }
         }
 
-        
+        private void PopCustBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Database.PopularCustomer());
+        }
+
+        private void PopMovBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Database.PopularMovie());
+        }
     }
 }

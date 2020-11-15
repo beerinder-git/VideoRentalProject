@@ -49,6 +49,8 @@
             this.ReturnMovieBtn = new System.Windows.Forms.Button();
             this.IssueMovieBtn = new System.Windows.Forms.Button();
             this.LoadRentedMovies = new System.Windows.Forms.Button();
+            this.PopCustBtn = new System.Windows.Forms.Button();
+            this.PopMovBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -239,11 +241,33 @@
             this.LoadRentedMovies.UseVisualStyleBackColor = true;
             this.LoadRentedMovies.Click += new System.EventHandler(this.LoadRentedMovies_Click);
             // 
+            // PopCustBtn
+            // 
+            this.PopCustBtn.Location = new System.Drawing.Point(378, 12);
+            this.PopCustBtn.Name = "PopCustBtn";
+            this.PopCustBtn.Size = new System.Drawing.Size(67, 54);
+            this.PopCustBtn.TabIndex = 22;
+            this.PopCustBtn.Text = "Popular Customer";
+            this.PopCustBtn.UseVisualStyleBackColor = true;
+            this.PopCustBtn.Click += new System.EventHandler(this.PopCustBtn_Click);
+            // 
+            // PopMovBtn
+            // 
+            this.PopMovBtn.Location = new System.Drawing.Point(305, 12);
+            this.PopMovBtn.Name = "PopMovBtn";
+            this.PopMovBtn.Size = new System.Drawing.Size(67, 54);
+            this.PopMovBtn.TabIndex = 23;
+            this.PopMovBtn.Text = "Popular Movie";
+            this.PopMovBtn.UseVisualStyleBackColor = true;
+            this.PopMovBtn.Click += new System.EventHandler(this.PopMovBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 535);
+            this.Controls.Add(this.PopMovBtn);
+            this.Controls.Add(this.PopCustBtn);
             this.Controls.Add(this.LoadRentedMovies);
             this.Controls.Add(this.IssueMovieBtn);
             this.Controls.Add(this.ReturnMovieBtn);
@@ -296,6 +320,8 @@
         private System.Windows.Forms.Button ReturnMovieBtn;
         private System.Windows.Forms.Button IssueMovieBtn;
         private System.Windows.Forms.Button LoadRentedMovies;
+        private System.Windows.Forms.Button PopCustBtn;
+        private System.Windows.Forms.Button PopMovBtn;
     }
 }
 
